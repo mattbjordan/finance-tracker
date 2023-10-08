@@ -1,12 +1,29 @@
 # finance-tracker
+
 Tool for tracking transactions/spending and maybe more
 
-## Prerequisites
+## Getting Started
 
-> Note: Only Windows is used for development. 
+### Prerequisites
+
+> Note: Only Windows is used for development.
 
 - [node](https://nodejs.org/en) v18.18.0 (last updated 10/7/23)
 
-**Recommended**
+#### Recommended
 
 - [nvm (for Windows)](https://github.com/coreybutler/nvm-windows)
+
+### Commands
+
+1. Install dependencies
+
+    ```node
+      npm install
+    ```
+
+2. Clean, build, and start the program
+
+    ```node
+    npm run cbs
+    ```

@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "description": "Tool for tracking transactions/spending and maybe more",
   "main": "./lib/main.js",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "clean": "rimraf lib",
     "clean:node": "rimraf node_modules",
     "start": "node ./lib/main.js",
+    "cbs": "npm run clean && npm run build && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src --ext .ts"
   },
@@ -20,5 +22,10 @@
     "eslint": "^8.51.0",
     "rimraf": "^5.0.5",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
+    "plaid": "^16.0.0"
   }
 }

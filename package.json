@@ -8,12 +8,16 @@
     "clean": "rimraf lib",
     "clean:node": "rimraf node_modules",
     "start": "node ./lib/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src --ext .ts"
   },
   "keywords": [],
   "author": "",
   "devDependencies": {
     "@types/node": "^20.8.3",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "eslint": "^8.51.0",
     "rimraf": "^5.0.5",
     "typescript": "^5.2.2"
   }

@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { Configuration, CountryCode, LinkTokenCreateRequest, PlaidApi, PlaidEnvironments, Products } from 'plaid';
+import Plaid, { Configuration, CountryCode, LinkTokenCreateRequest, PlaidApi, PlaidEnvironments, Products, SandboxPublicTokenCreateRequest, LinkSessionSuccess } from 'plaid';
 import dotenv from 'dotenv';
 
 console.log("Hello World.");
@@ -32,6 +32,103 @@ const tokenResponse = await client.linkTokenCreate(linkTokenConfig);
 const tokenData = tokenResponse.data;
 // res.json(tokenData);
 console.log(tokenData);
+
+// client.sandboxPublicTokenCreate({})
+
+import {
+  PlaidLinkOnSuccess,
+  PlaidLinkOnSuccessMetadata,
+  usePlaidLink 
+} from 'react-plaid-link';
+
+let publicToken = "";
+
+const { open, ready } = usePlaidLink({
+  token: tokenData.link_token,
+  onSuccess: (public_token, metadata) => {
+    // send public_token to server
+    console.log("hello link");
+    publicToken = public_token;
+  }
+});
+
+while (!ready) {
+  // wait...
+}
+
+const response = await client.itemPublicTokenExchange({ public_token: publicToken });
+const access_token = response.data.access_token;
+const accounts_response = await client.accountsGet({ access_token });
+const accounts = accounts_response.data.accounts;
+
+console.log({accounts});
+
+
+// const onSuccess = useCallback<PlaidLinkOnSuccess>(
+//   (public_token: string, metadata: PlaidLinkOnSuccessMetadata) => {
+//     // log and save metadata
+//     // exchange public token
+//     fetch('//yourserver.com/exchange-public-token', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: {
+//         public_token,
+//       },
+//     });
+//   },
+//   [],
+// );
+
+
+// addEventListener("success", (event) => {});
+
+// onsuccess = (event) => {};
+
+// await client.linkTokenCreate(linkTokenConfig).then((res) => {
+//   onSuccess: console.log({res});
+//   // onSuccess()
+// })
+
+// const c3: LinkSessionSuccess = {}
+
+// // const c2: PlaidLinkOptions = {};
+// // const onSuccess = 
+
+// const c: SandboxPublicTokenCreateRequest = {};
+
+// client.itemPublicTokenExchange({})
+
+// const startLink = function () {
+//   if (linkTokenData === undefined) {
+//     return;
+//   }
+//   const handler = Plaid.create({
+//     token: linkTokenData.link_token,
+//     onSuccess: async (publicToken, metadata) => {
+//       console.log(`ONSUCCESS: Metadata ${JSON.stringify(metadata)}`);
+//       showOutput(
+//         `I have a public token: ${publicToken} I should exchange this`
+//       );
+//       publicTokenToExchange = publicToken;
+//       document.querySelector("#exchangeToken").removeAttribute("disabled");
+//     },
+//     onExit: (err, metadata) => {
+//       console.log(
+//         `Exited early. Error: ${JSON.stringify(err)} Metadata: ${JSON.stringify(
+//           metadata
+//         )}`
+//       );
+//       showOutput(`Link existed early with status ${metadata.status}`)
+//     },
+//     onEvent: (eventName, metadata) => {
+//       console.log(`Event ${eventName}, Metadata: ${JSON.stringify(metadata)}`);
+//     },
+//   });
+//   handler.open();
+// };
+
 
 console.log("This is the end.");
 

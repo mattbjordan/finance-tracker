@@ -14,13 +14,18 @@
     "start:page": "node ./server.cjs",
     "cbs": "npm run clean && npm run build && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint src --ext .ts"
+    "lint": "eslint src --ext .ts",
+    "next:dev": "next dev",
+    "next:build": "next build",
+    "next:start": "next start",
+    "next:lint": "next lint"
   },
   "keywords": [],
   "author": "",
   "devDependencies": {
     "@types/jsdom": "^21.1.3",
     "@types/node": "^20.8.3",
+    "@types/react": "^18.2.52",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "eslint": "^8.51.0",
@@ -31,6 +36,9 @@
     "axios": "^1.5.1",
     "dotenv": "^16.3.1",
     "jsdom": "^22.1.0",
-    "plaid": "^16.0.0"
+    "next": "^14.1.0",
+    "plaid": "^16.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

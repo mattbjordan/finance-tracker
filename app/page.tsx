@@ -1,5 +1,12 @@
 import React from 'react';
+import SimplePlaidLink from './SimplePlaidLink';
 
 export default function Page() {
-  return <h1>Hello, Next.js!</h1>
+  return  (
+    <div>
+      <h1>Hello, Next.js!</h1>
+      <SimplePlaidLink/>
+    </div>
+
+  )
 }
